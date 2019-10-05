@@ -1,6 +1,7 @@
 package org.acme;
 
 import org.acme.entities.Vehicle;
+import org.eclipse.microprofile.metrics.annotation.Counted;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -25,6 +26,7 @@ public class ExampleResource {
 
     @GET
     @Transactional
+    @Counted(name = "performedRequests", description = "How often all Vehicles are requested")
     public List<Vehicle> hello() {
         TypedQuery<Vehicle> query = em.createNamedQuery("Vehicle.findAll", Vehicle.class);
         List<Vehicle> vehicles = query.getResultList();
