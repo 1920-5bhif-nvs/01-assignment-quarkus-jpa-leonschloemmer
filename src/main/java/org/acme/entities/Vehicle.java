@@ -1,11 +1,21 @@
 package org.acme.entities;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@NamedQuery(name = "Vehicle.findAll", query = "select v from Vehicle v")
 public class Vehicle {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String make;
     private String model;
+
+    public Vehicle() {
+
+    }
 
     public Vehicle(String make, String model) {
         this.make = make;
